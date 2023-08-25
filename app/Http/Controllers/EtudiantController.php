@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class EtudiantController extends Controller
 {
-    /*const TABLE=[
+    /*
+    pour ne pas dupliquer le tabl
+    const TABLE=[
         1=> [
             'id'=>'1',
             'photo'=>'img1.jpg',
@@ -175,7 +177,7 @@ class EtudiantController extends Controller
         ]
     ];
     foreach(TABLE as $key=>$item)
-    pu
+    
     */
 
     public $etudiants;
@@ -485,8 +487,5 @@ class EtudiantController extends Controller
         }
         return view('Etudiants.seeMore',compact('etudiantItem'));
     }
-/*     
-    public function addstudent(Request $request){
-        dd($request->all());
-    } */
+
 }

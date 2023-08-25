@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\ListEtudiantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,8 @@ use App\Http\Controllers\EtudiantController;
 |
 */
 
-Route::get('/',[EtudiantController::class,'index'])->name('home');
-Route::get('/detail/{id?}',[EtudiantController::class,'show'])->name('detail');
-//Route::post('/detail/{addstudent?}',[EtudiantController::class,'addstudent'])->name('student');
-//Route::get('/',[EtudiantController::class,'delete'])->name('delete');
+Route::get('/',[ListEtudiantController::class,'index'])->name('home');
+Route::get('/detail/{id?}',[ListEtudiantController::class,'show'])->name('detail');
+Route::post('/save',[ListEtudiantController::class , 'store'])->name('etudiantStore');
+Route::get('/delete/{id}',[ListEtudiantController::class,'destroy'])->name('delete'); 
+Route::POST('/update/{id}',[ListEtudiantController::class ,'update'])->name('updateEtudiantStore');

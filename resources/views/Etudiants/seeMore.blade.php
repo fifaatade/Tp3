@@ -1,10 +1,15 @@
 @extends('master')
-@section('title','détails des étudiants')
+@section('title','étudiant')
 
 @section('content')
     <div class="container">
-        <h1 class="text-center mt-5 mb-5">INFORMATIONS DE L'ETUDIANT NUMERO {{$etudiantItem['id']}}</h1>
-        @include('Etudiants.includes.show')
+        @if(!empty($etudiantItem['id'])) 
+            @include('Etudiants.includes.show')            
+        @elseif(empty($etudiantItem['id']))
+            @include('Etudiants.includes.add')
+        @elseif($etudiantItem['id']->exists())
+            @include('Etudiants.includes.update')
+        @endif
     </div>    
 @endsection
-    
+

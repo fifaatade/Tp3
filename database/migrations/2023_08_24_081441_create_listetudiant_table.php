@@ -15,6 +15,13 @@ class CreateListetudiantTable extends Migration
     {
         Schema::create('listetudiant', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('photo')->nullable();
+            $table->string('hobbies');
+            $table->string('specialite');
+            $table->date('datenais');
+            $table->string('bio');
             $table->timestamps();
         });
     }

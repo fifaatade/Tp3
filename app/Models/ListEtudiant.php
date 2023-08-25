@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class ListEtudiant extends Model
 {
     //use HasFactory;
-    protected $table='listetudiant'
+    protected $table='listetudiant';
+    protected $fillable=[
+        'nom',
+        'prenom',
+        'photo',
+        'hobbies',
+        'specialite',
+        'datenais',
+        'bio',
+        //protected $guarde=[]  //pour faire afficher toutes les colonnes dans la base de données
+    ];
     
 }
