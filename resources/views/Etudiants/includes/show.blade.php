@@ -15,10 +15,10 @@
                     <h5 class="card-title"><strong class="underline">spécialité: </strong>{{$etudiantItem['specialite']}}</h5>
                     </div>
                 </div>
-                <p class="padding"><strong class="underline ">bio:</strong>{{$etudiantItem['bio']}}</p>
+                <p class="padding"><strong class="underline mt-3">bio:</strong> {{$etudiantItem['bio']}}</p>
                 <div class="button">
-                    <a class="btn btn-outline-success" @if($id<=sizeof($sizeEtudiant)) href="{{route('detail',$etudiantItem['id']-1)}}" @else href="{{route('home')}}" @endif>précédent</a>
-                    <a class="btn btn-outline-warning" @if($id<sizeof($sizeEtudiant)) href="{{route('detail',$etudiantItem['id']+1)}}" @else href="{{route('home')}}" @endif>suivant</a>
+                    <a class="btn btn-outline-success" href="{{route('detail',$etudiantItem['id']-1)}}">précédent</a>
+                    <a class="btn btn-outline-warning"  href="{{route('detail',$etudiantItem['id']+1)}}">suivant</a>
                 </div>
                 <div>
                     <a class="btn btn-outline-danger text-body-secondary" href="{{route('home')}}">retour</a>

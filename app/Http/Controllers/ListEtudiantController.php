@@ -27,7 +27,7 @@ class ListEtudiantController extends Controller
      */
     public function create()
     {
-        //
+        return view('Etudiants.seeMore');
     }
 
     /**
@@ -36,9 +36,9 @@ class ListEtudiantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(StoreStudentRequest $request)
     {
-
         $etudiant = new ListEtudiant();
 
         $etudiant->nom = $request->nom;
@@ -47,22 +47,31 @@ class ListEtudiantController extends Controller
         $etudiant->bio = $request->bio;
         $etudiant->specialite = $request->specialite;
         $etudiant->datenais = $request->datenais;
+        $etudiant->status = $request->status;
 
         if ($request->photo) {
             $file = $request->file('photo');
             $path = $file->store('imagesEtudiants');
-
             $etudiant->photo = $path;
-        }else{
-            $etudiant->photo = 'photo';
         }
       
-       $etudiant->save();
-
-        return redirect()->route('home');
-
+        $etudiant->save();
+        return redirect()->route('Etudiants.update');
     }
+    public function edit(Request $request, $id){
+        $etudiantExistant = ListEtudiant::find($id);
+    
+        if ($etudiantExistant) {
+            $etudiantUpdate = $etudiantExistant->toArray();
+    
+            return view('Etudiants.update', compact('etudiantUpdate'));
+        } else {
+            return response()->json(['message'=>'échec de la mise à jour des informations de l\'étudiant']);
+        }
+    }
+    
 
+    
     /**
      * Display the specified resource.
      *
@@ -72,8 +81,18 @@ class ListEtudiantController extends Controller
     public function show($id=null)
     {
         $etudiantItem=ListEtudiant::find($id);
-        $sizeEtudiant=ListEtudiant::all();
-        return view('Etudiants.seeMore', compact('etudiantItem','sizeEtudiant','id'));
+        //$sizeEtudiant=ListEtudiant::all();
+        $ids=idsDB();
+        if(isset($ids)){
+
+            return view('Etudiants.seeMore', compact('etudiantItem','id'));
+
+        }
+        else{
+            return view('Etudiants.seeMore', compact('etudiantItem'));
+
+        }
+        //return view('Etudiants.seeMore', compact('etudiantItem','sizeEtudiant','id'));
     }
 
     /**
@@ -82,9 +101,24 @@ class ListEtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(Request $request, $id)
     {
-        //
+        $etudiant = ListEtudiant::find($id);
+        if($request->photo){
+            $file = $request->file('photo');
+            $path = $file->store('imagesEtudiants');
+            $etudiant->photo = $path;
+        }
+            $etudiant->nom = $request->nom;
+            $etudiant->prenom = $request->prenom;
+            $etudiant->hobbies = $request->hobbies;
+            $etudiant->bio = $request->bio;
+            $etudiant->specialite = $request->specialite;
+            $etudiant->datenais = $request->datenais;
+    
+           
+        $etudiant->save();
+        return redirect()->route('home');
     }
 
     /**
@@ -94,17 +128,24 @@ class ListEtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    /* public function update(Request $request, $id)
     {
-        $etudiantUpdate=ListEtudiant::find($id);
+        $etudiantUpdate=$request->all();
+        ListEtudiant::where('id',$id)->update([
+            $etudiantUpdate=ListEtudiant::all(),
+        ]);
+        $etudiantUpdate->save();
+
+        return view('Etudiants.update', compact('etudiantUpdate'));
+        /* $etudiantUpdate=ListEtudiant::find($id);
         $etudiantUpdate->fill($request->all());
         if($etudiantUpdate->save()){
             return redirect()->route('home');
         }
         else{
             return response()->json(['message'=>'échec de la mise à jour des informations de l\'étudiant']);
-        }
-    }
+        } 
+    } */
 
     /**
      * Remove the specified resource from storage.
@@ -117,4 +158,15 @@ class ListEtudiantController extends Controller
         ListEtudiant::where('id',$id)->delete();
         return redirect()->route('home');
     }
+
+    public function activate($id) {
+        $student = ListEtudiant::find($id);
+        if ($student) {
+            $student->status = !$student->status; 
+            $student->save();
+        }
+        return redirect()->route('home');
+    }
+    
 }
+

@@ -17,6 +17,7 @@ class ListEtudiant extends Model
         'specialite',
         'datenais',
         'bio',
+        'status',
         //protected $guarde=[]  //pour faire afficher toutes les colonnes dans la base de données
     ];
     

@@ -5,10 +5,8 @@
     <div class="container">
         @if(!empty($etudiantItem['id'])) 
             @include('Etudiants.includes.show')            
-        @elseif(empty($etudiantItem['id']))
+        @else
             @include('Etudiants.includes.add')
-        @elseif($etudiantItem['id']->exists())
-            @include('Etudiants.includes.update')
         @endif
     </div>    
 @endsection
