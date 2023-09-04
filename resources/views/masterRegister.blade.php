@@ -14,7 +14,14 @@
             @yield('title')
         </h2>
         <div class="card-body">
-                
+            @if (session('errors'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul>
+                            <li>{{session('errors')}}</li><br />
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+            @endif
                 @yield('content')
         </div>
     </div>

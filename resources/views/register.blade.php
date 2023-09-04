@@ -3,7 +3,7 @@
 
 
 @section('content')
-    <form action="" method="get" autocomplete="off">
+    <form action="{{route('storeUser')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3 mt-3">
             <label for="lastname" class="form-label">Nom</label>
@@ -27,7 +27,7 @@
         </div>
         <div class="mb-3 mt-3">
             <label for="password" class="form-label">Confirmation du mot de passe</label>
-            <input type="password" name="password" class="form-control" id="">
+            <input type="password" name="password_confirmation" class="form-control" id="">
         </div>
         <a href="{{route('login')}}"><button type="submit" class="btn btn-primary float-end "> S'inscrire</button></a>
     </form>

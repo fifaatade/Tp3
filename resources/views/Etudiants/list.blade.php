@@ -3,8 +3,11 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center mt-5 mb-5">LISTE DES ETUDIANTS</h1>
-        @include('Etudiants.includes.table')
+        @if(isset($etudiant_list))
+            @include('Etudiants.includes.table')
+        @elseif(isset($etudiants))
+            @include('Etudiants.includes.allStudent')
+        @endif
     </div>    
 @endsection
     

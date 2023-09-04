@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdatePosteForeignAdd extends Migration
+class UpdateCoursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class UpdatePosteForeignAdd extends Migration
      */
     public function up()
     {
-        Schema::table("listetudiant",function (Blueprint $table){
-            $table->foreignId('users-id')
-                ->nullable()
-                ->constrained('users')
-                ->onUpdate("cascade")
-                ->onDelete("cascade");
-        });    
+
+        Schema::table('cours', function (Blueprint $table) {
+            $table->foreignId('id_categorie')
+            ->nullable()
+            ->constrained('categorie')
+            ->onUpdate("cascade")
+            ->onDelete("cascade");
+        });
     }
 
     /**

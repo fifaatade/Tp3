@@ -31,7 +31,6 @@ class StoreStudentRequest extends FormRequest
             'bio'=>['required'],
             'specialite'=>['required'],
             'datenais'=>['required'],
-            'status'=>['required'],
 
         ];
     }

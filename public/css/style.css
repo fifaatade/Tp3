@@ -5,7 +5,7 @@
     z-index: 1;
 }
 .container{
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     padding: 0 5px;
 }
@@ -46,4 +46,8 @@ input{
     display: flex;
     justify-content: flex-end;
     gap: 12px;
+}
+.block{
+    flex-direction: column;
+    display: flex;
 }

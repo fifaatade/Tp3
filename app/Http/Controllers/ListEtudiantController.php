@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ListEtudiant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreStudentRequest;
 
@@ -16,8 +17,16 @@ class ListEtudiantController extends Controller
      */
     public function index()
     {
-        $etudiants=ListEtudiant::all();
-        return view('Etudiants.list', compact('etudiants'));
+        //$etudiants=ListEtudiant::all();
+        $user=Auth::user();
+        $nom = $user?$user->firstname:"";
+        $prenom = $user?$user->lastname:"";
+        $etudiant_list=$user->etudiant()->paginate(10);//ListEtudiant::where('user_id',$user->id)->get();
+        return view('Etudiants.list', compact( 'nom','prenom','etudiant_list'));
+    }
+    public function all(){
+        $etudiants = ListEtudiant::paginate(10);//all();
+        return view('Etudiants.list',compact('etudiants'));
     }
 
     /**
@@ -37,8 +46,9 @@ class ListEtudiantController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(StoreStudentRequest $request)
+    public function storeStudent(StoreStudentRequest $request)
     {
+
         $etudiant = new ListEtudiant();
 
         $etudiant->nom = $request->nom;
@@ -47,17 +57,18 @@ class ListEtudiantController extends Controller
         $etudiant->bio = $request->bio;
         $etudiant->specialite = $request->specialite;
         $etudiant->datenais = $request->datenais;
-        $etudiant->status = $request->status;
+        $etudiant->status = true;
+        $etudiant->user_id=Auth::user()->id;
 
         if ($request->photo) {
             $file = $request->file('photo');
             $path = $file->store('imagesEtudiants');
             $etudiant->photo = $path;
-        }
-      
+        } 
         $etudiant->save();
-        return redirect()->route('Etudiants.update');
+        return redirect()->route('home');
     }
+
     public function edit(Request $request, $id){
         $etudiantExistant = ListEtudiant::find($id);
     
@@ -101,6 +112,7 @@ class ListEtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $etudiant = ListEtudiant::find($id);
@@ -109,6 +121,7 @@ class ListEtudiantController extends Controller
             $path = $file->store('imagesEtudiants');
             $etudiant->photo = $path;
         }
+      
             $etudiant->nom = $request->nom;
             $etudiant->prenom = $request->prenom;
             $etudiant->hobbies = $request->hobbies;
@@ -119,6 +132,7 @@ class ListEtudiantController extends Controller
            
         $etudiant->save();
         return redirect()->route('home');
+        
     }
 
     /**

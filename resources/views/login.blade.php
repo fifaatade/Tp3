@@ -3,8 +3,9 @@
 
 
 @section('content')
-    <form action="" method="get" autocomplete="off">
+    <form action="{{route("authentification")}}" method="POST" autocomplete="off" enctype="multipart/form-data">
         @csrf
+
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" placeholder="veuillez entrer votre email" id="">
@@ -16,6 +17,7 @@
         <a href="{{route('home')}}"><button type="submit" class="btn btn-primary float-end "> Se connecter</button></a>
     </form>
     <p class="mt-3">Vous n'avez pas un compte? <a href="{{route('register')}}">cliquez ici</a></p>
+    <p class="mt-3 float-end">Mot de passe oublié? <a href="{{route('forgetPassword')}}">cliquez ici</a></p>
 
 @endsection
 

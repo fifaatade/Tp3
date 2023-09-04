@@ -18,7 +18,7 @@
                 </div>
                 <strong class="underline ">bio:</strong> <textarea name="bio" id="" cols="30" rows="10">{{old('bio')}}</textarea>@error('bio') <span class="text-danger">{{$message}}</span> @enderror
                 <div class="button">
-                    <button type="submit" class="btn btn-outline-success">enrégistrer</button>
+                    <button type="submit" class="btn mt-3 btn-outline-success">enrégistrer</button>
                 </div>
                 <div>
                     <a class="btn btn-outline-danger text-body-secondary" href="{{route('home')}}">retour</a>
