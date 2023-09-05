@@ -74,7 +74,7 @@ Route::controller(AffEtudiantController::class)->middleware('auth')->group(funct
 });
 
 Route::controller(AffEnseignantController::class)->middleware('auth')->group(function(){
-    Route::post('save/affectation/cours/etudiant','storeAffEns')->name('affEnsStore');
+    Route::post('save/affectation/cours/enseignant/{id}','storeAffEns')->name('affEnsStore');
     Route::get('delete/enseignant/aff/{id}','destroy')->name('deleteAffEns');
 });
 

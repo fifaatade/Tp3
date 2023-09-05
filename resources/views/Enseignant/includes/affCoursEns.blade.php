@@ -2,7 +2,7 @@
     <a class="btn btn-outline-warning text-body-secondary mt-3 ms-3 float-end" href="{{route('enseignant')}}">retour</a>
 </div>
 <div class="d-flex mt-5">
-    <form action="{{route('affEnsStore')}}" method="POST" class="me-5 ms-3" style="width: 500px">
+    <form action="{{route('affEnsStore',$enseignantItem['id'])}}" method="POST" class="me-5 ms-3" style="width: 500px">
         @csrf
         <select name="cours[]" class="form-select" aria-label="Default select example" style="width: 100%" multiple>
             <option selected>Sélectionne des cours</option>
@@ -28,7 +28,7 @@
                 @foreach($affCoursEns as $items)
                     <tr>
                         <th scope="row">{{$items['id']}}</th>
-                        <td class=" text-center ">{{$items['cours']}}</td>
+                        <td class=" text-center ">{{$items['id_cours']}}</td>
                         <td class="text-center">
                             <a class="btn btn-outline-danger" href="{{route('deleteAffEns',$items['id'])}}">supprimer</a>
                         </td>

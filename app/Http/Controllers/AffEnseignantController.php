@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enseignant;
+use App\Models\AffEtudiant;
 use Illuminate\Http\Request;
+use App\Models\AffEnseignant;
 
 class AffEnseignantController extends Controller
 {
-    public function storeAffEns( Request $request){
+    public function storeAffEns( Request $request, $id=null){
         $data=$request->all();
+        $enseignantItem=Enseignant::find($id);
 
         $validation =$request->validate([
             "cours" =>"required",
            ]);
         $dataCours=$request->input('cours');
         foreach ($dataCours as $item){
-            AffEtudiant::create([
-                'id_etudiant'=>$data['id_etudiant'],
+            AffEnseignant::create([
                 'id_cours'=>$item,
             ]);
         }
-        
-        return redirect()->route('affCoursEnseignant');
+
+        return redirect()->route('affCoursEnseignant',['id' => $id]);
     }
     public function destroy($id)
     {
