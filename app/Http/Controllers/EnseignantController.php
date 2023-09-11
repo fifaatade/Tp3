@@ -76,7 +76,7 @@ class EnseignantController extends Controller
     public function affCoursEnseignant($id=null){
         $enseignantItem=Enseignant::find($id);
         $cours = Cours::all();
-        $affCoursEns=AffEnseignant::all();
+        $affCoursEns=$enseignantItem->affectationsEnseignant;
         return view('Enseignant.affecterCoursEnseignant',compact('enseignantItem','id','cours','affCoursEns'));
     }
 }

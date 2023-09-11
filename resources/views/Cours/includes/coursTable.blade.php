@@ -22,7 +22,7 @@
             <tr>
             <th scope="row">{{$items['id']}}</th>
             <td class=" text-center ">{{$items['nom']}}</td>
-            <td class=" text-center ">{{$items['maxHoraire']}}</td>
+            <td class=" text-center ">{{$items['maxHoraire']}} {{'heures'}}</td>
             <td class=" text-center ">{{$items['coef']}}</td>
             <td class=" text-center ">{{$items['addBy']}}</td>
             <td class=" text-center ">{{$items['id_categorie']}}</td>

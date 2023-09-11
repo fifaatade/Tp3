@@ -82,8 +82,8 @@ class CoursController extends Controller
     }
     
     public function affCours(){
+        $etudiants = ListEtudiant::all();
         $cours = Cours::all();
-        $etudiants=ListEtudiant::all();
         $affCours=AffEtudiant::all();
         return view('Cours.affecterCours',compact("cours",'etudiants','affCours'));
     }

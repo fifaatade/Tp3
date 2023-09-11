@@ -18,8 +18,9 @@ class AffEnseignantController extends Controller
            ]);
         $dataCours=$request->input('cours');
         foreach ($dataCours as $item){
-            AffEnseignant::create([
+            AffEnseignant::updateOrCreate([
                 'id_cours'=>$item,
+                'id_enseignant'=>$id
             ]);
         }
 
@@ -28,6 +29,6 @@ class AffEnseignantController extends Controller
     public function destroy($id)
     {
         AffEtudiant::where('id',$id)->delete();
-        return redirect()->route('affCoursEnseignant');
+        return redirect()->route('affCoursEnseignant',['id' => $id]);
     }
 }

@@ -1,5 +1,6 @@
 <div>
     <a class="btn btn-outline-danger text-body-secondary mb-5" href="{{route('home')}}">retour</a>
+    <a class="btn btn-outline-warning text-body-warning mb-5 float-end" href="{{route('enseignant',)}}">tableau</a>
 </div>
 <form action="{{route('enseignantStore')}}" method="POST" enctype="multipart/form-data">
     @csrf

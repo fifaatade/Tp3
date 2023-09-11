@@ -29,7 +29,7 @@
             <label for="password" class="form-label">Confirmation du mot de passe</label>
             <input type="password" name="password_confirmation" class="form-control" id="">
         </div>
-        <a href="{{route('login')}}"><button type="submit" class="btn btn-primary float-end "> S'inscrire</button></a>
+        <a href="{{route('login')}}"><button type="submit" class="btn btn-secondary float-end "> S'inscrire</button></a>
     </form>
     <p class="mt-3 mt-3">Vous avez déjà un compte? <a href="{{route('login')}}">cliquez ici</a></p>
 

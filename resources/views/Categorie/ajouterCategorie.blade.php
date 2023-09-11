@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','liste des étudiants')
+@section('title','catégorie')
 
 @section('content')
 

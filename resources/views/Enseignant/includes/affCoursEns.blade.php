@@ -27,10 +27,12 @@
             <tbody>
                 @foreach($affCoursEns as $items)
                     <tr>
-                        <th scope="row">{{$items['id']}}</th>
-                        <td class=" text-center ">{{$items['id_cours']}}</td>
+                        <th scope="row">{{$items->id}}</th>
+                        <td class=" text-center " title="">
+                            {{$items->cours->nom}}
+                        </td>
                         <td class="text-center">
-                            <a class="btn btn-outline-danger" href="{{route('deleteAffEns',$items['id'])}}">supprimer</a>
+                            <a class="btn btn-outline-danger" href="{{route('deleteAffEns',$items->id)}}">supprimer</a>
                         </td>
                     </tr>
                 @endforeach

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\EtudiantController;
@@ -24,7 +25,7 @@ Route::controller(ListEtudiantController::class)->middleware('auth')->group(func
     Route::get('/','index')->name('home');
     Route::get('etudiant/{id?}','show')->name('detail');
     Route::post('save/etudiant','storeStudent')->name('etudiantStore');
-    Route::get('delete/{id}','destroy')->name('delete'); 
+    Route::get('delete/student/{id}','destroyStudent')->name('deleteStudent'); 
     Route::get('update/{id}','edit')->name('updateEtudiant');
     Route::post('update/{id}','update')->name('update');
     Route::get('activate/{id}','activate')->name('activate');
@@ -81,4 +82,9 @@ Route::controller(AffEnseignantController::class)->middleware('auth')->group(fun
 Route::controller(CategorieController::class)->middleware('auth')->group(function(){
     Route::get('create/categorie','indexCategorie')->name('addCategorie');
     Route::post('store/categorie',"storeCategorie")->name('categorieStore');
+});
+
+Route::controller(NoteController::class)->middleware('auth')->group(function(){
+    Route::get('create/note/{id}/{idCours}','indexNote')->name('note');
+    Route::post('store/note/{id}/{idCours}','storeNote')->name('storeNote');
 });

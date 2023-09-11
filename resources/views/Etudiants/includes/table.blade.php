@@ -1,8 +1,8 @@
 @if($etudiant_list)
     {{-- <h1 class="text-center mt-5 mb-5">Hello {{$items->user->FullName}} ! Voici ta liste d'étudiants !..</h1> --}}  
-    <h2 class=" mt-5 text-danger-emphasis">Bienvenue sur votre page étudiant <em>{{$nom.' '. $prenom}}</em></h2> 
+    <h2 class=" mt-5 mb-5 text-danger-emphasis">Bienvenue sur votre page étudiant <em>{{$nom.' '. $prenom}}</em></h2> 
     <div style="" class="d-flex align-items-center justify-content-center mt-5 mb-5 float-end">
-        <a href="{{route('all')}}" type="button" class="btn btn-outline-danger me-5">voir tous les étudiants</a>
+        <a href="{{route('all')}}" type="button" class="btn btn-warning me-3">voir tous les étudiants</a>
         <a href="{{route('affCours')}}" type="submit" class="btn btn-dark">attribution de cours</a>
     </div >
     <div class="d-flex align-items-center justify-content-center mb-5 mt-5 float-start">
@@ -37,11 +37,11 @@
                         @if($items['status']==1)
                             <a class="btn btn-outline-info " href="{{route('detail',$items['id'])}}" width="">voir plus</a>
                             <a class="btn btn-outline-warning mx-2 my-2"  href="{{route('updateEtudiant',$items['id'])}}">modifier</a>
-                            <a class="btn btn-outline-danger" href="{{route('delete',$items['id'])}}">supprimer</a>
+                            <a class="btn btn-outline-danger" href="{{route('deleteStudent',$items['id'])}}">supprimer</a>
                         @else
                             <a onclick="return false" href="{{route('detail',$items['id'])}}" width=""> <button disabled type="button" class=" btn btn-outline-info  ">voir plus</button></a>
                             <a onclick="return false"  href="{{route('updateEtudiant',$items['id'])}}"> <button disabled type="button" class="btn btn-outline-warning mx-2 my-2" >modifier</button></a>
-                            <a onclick="return false" href="{{route('delete',$items['id'])}}"><button disabled type="button" class="btn btn-outline-danger">supprimer</button></a>
+                            <a onclick="return false" href="{{route('deleteStudent',$items['id'])}}"><button disabled type="button" class="btn btn-outline-danger">supprimer</button></a>
                         @endif
                         <form action="{{ route('activate', $items['id']) }}" method="GET">
                             @csrf

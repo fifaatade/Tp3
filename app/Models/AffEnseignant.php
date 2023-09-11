@@ -16,6 +16,10 @@ class AffEnseignant extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_cours'
+        'id_cours',
+        'id_enseignant'
     ];
+    public function cours(){
+        return $this->belongsTo(Cours::class,"id_cours","id");
+    }
 }

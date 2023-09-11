@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Note;
 use App\Models\User;
+use App\Models\AffEtudiant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,5 +27,11 @@ class ListEtudiant extends Model
     public function user(){
         return $this->belongsTo(User::class,"user_id","id");
     }
-    
+    public function affectations(){
+        return $this->hasMany(AffEtudiant::class,'id_etudiant','id');
+    }
+    public function notes(){
+        return $this->hasMany(Note::class,'id_etudiant','id');
+    }
+
 }

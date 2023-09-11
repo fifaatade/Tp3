@@ -94,13 +94,13 @@ class ListEtudiantController extends Controller
         $etudiantItem=ListEtudiant::find($id);
         //$sizeEtudiant=ListEtudiant::all();
         $ids=idsDB();
-        if(isset($ids)){
+        if($etudiantItem && in_array($etudiantItem->id,$ids)){
 
             return view('Etudiants.seeMore', compact('etudiantItem','id'));
 
         }
         else{
-            return view('Etudiants.seeMore', compact('etudiantItem'));
+            return view('Etudiants.list');
 
         }
         //return view('Etudiants.seeMore', compact('etudiantItem','sizeEtudiant','id'));
@@ -167,7 +167,7 @@ class ListEtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyStudent($id)
     {
         ListEtudiant::where('id',$id)->delete();
         return redirect()->route('home');
@@ -181,6 +181,6 @@ class ListEtudiantController extends Controller
         }
         return redirect()->route('home');
     }
-    
+ 
 }
 

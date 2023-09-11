@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\AffEnseignant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Enseignant extends Model
 {
@@ -21,4 +22,7 @@ class Enseignant extends Model
         'tel',
         'adresse',
     ];
+    public function affectationsEnseignant(){
+        return $this->hasMany(AffEnseignant::class,'id_enseignant','id');
+    }
 }
